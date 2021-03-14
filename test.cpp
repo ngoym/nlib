@@ -35,6 +35,18 @@ void test_array(){
     cout << "Size of array : " << arr.used << endl;
     cout << "Index with element = 0: " << arr.find(0) << endl;
     cout << "Index with element = 3: " << arr.find(3) << endl;
+    arr.push(1);
+    arr.push(3);
+    arr.push(3);
+    arr.push(-1);
+    arr.print();
+    cout << "Size of array : " << arr.used << endl;
+    arr.remove(3);
+    arr.print();
+    cout << "Size of array : " << arr.used << endl;
+    arr.pop();
+    arr.print();
+    cout << "Size of array : " << arr.used << endl;
 }
 
 int main(){

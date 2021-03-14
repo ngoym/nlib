@@ -6,6 +6,11 @@ using namespace std;
 
 #define DEFAULT_BLOCK_SIZE 128
 
+struct node{
+    int pos;
+    node * next;
+};
+
 template <typename T>
 struct Array
 {
@@ -119,7 +124,40 @@ struct Array
         }
         return to_return;
     }
+    void remove(T item){
+        // Use a linked list to store positions to delete in order 
+        // to keep this operation O(N) + a small constant.
+        node *cur = NULL, *start = NULL;
+        bool first = true;
+        for (int i = 0; i < used; i++){
+            if (array[i] == item){
+                node *tmp = new node;
+                tmp->pos = i;
+                tmp->next = NULL;
+                if (start == NULL){
+                    start = tmp;
+                    cur = tmp;
+                    tmp = NULL;
+                }
+                else{
+                    cur->next = tmp;
+                    cur = tmp;
+                }
+            }
+        }
+        int counter = 1;
+        while(start != NULL){
+            if (first) {
+                delete_at(start->pos);
+                first = false;
+            }
+            else {
+                delete_at(start->pos - counter);
+                counter++;
+            }
+            start = start->next;
+        }
+    }
 };
-
 
 #endif
