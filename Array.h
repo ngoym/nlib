@@ -109,6 +109,16 @@ struct Array
             used--;
         }
     }
+    int find(T item){
+        int to_return = -1;
+        for (int i = 0; i < used; i++){
+            if (array[i] == item){
+                to_return = i;
+                break;
+            }
+        }
+        return to_return;
+    }
 };
 
 

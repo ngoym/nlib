@@ -33,6 +33,8 @@ void test_array(){
     arr.delete_at(0);
     arr.print();
     cout << "Size of array : " << arr.used << endl;
+    cout << "Index with element = 0: " << arr.find(0) << endl;
+    cout << "Index with element = 3: " << arr.find(3) << endl;
 }
 
 int main(){
