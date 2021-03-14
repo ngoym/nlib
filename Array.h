@@ -85,6 +85,30 @@ struct Array
         }
         // TODO(nym) some error handling here
     }
+    void insert(T item, size_t pos){
+        if (used + 1 >= _size){
+            alloc(DEFAULT_BLOCK_SIZE);
+        }
+        if (pos >= used){
+            array[used] = item;
+            used++;
+        }
+        else{
+            for(size_t i = used; i > pos; i--){
+                array[i] = array[i-1];
+            }
+            array[pos] = item;
+            used++;
+        }
+    }
+    void delete_at(size_t pos){
+        if (pos < used){
+            for (size_t i = pos; i < used; i++){
+                array[i] = array[i+1];
+            }
+            used--;
+        }
+    }
 };
 
 
