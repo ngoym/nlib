@@ -4,7 +4,7 @@
 
 using namespace std;
 
-#define DEFAULT_BLOCK_SIZE 128
+#define DEFAULT_BLOCK_SIZE 1024
 
 struct node{
     int pos;
@@ -29,7 +29,9 @@ struct Array
         T* tmp = (T*) malloc(sz * sizeof(T));
         if (tmp != nullptr)
             array = tmp;
-        // TODO(nym) some error handling here
+        else{
+            cerr << "Failed to allocate memory." << endl;
+        }
     }
     ~Array(){
         _size = 0;
@@ -50,7 +52,9 @@ struct Array
             array = tmp;
             _size += mem_sz;
         }
-        // TODO(nym) some error handling here
+        else{
+            cerr << "Failed to allocate memory." << endl;
+        }
     }
     size_t size(){
         return used;
@@ -67,7 +71,10 @@ struct Array
     T at(int i){
         if (i <= used)
             return array[i];
-        // TODO(nym) some error handling here
+        else {
+            cerr << "Index out of bounds. Requested index is " << i << ", but array size is " << used << endl;
+            return 0;
+        }
     }
     void push(T item){
         if (is_empty() && _size == 0){
@@ -88,7 +95,10 @@ struct Array
             used--;
             return array[used];
         }
-        // TODO(nym) some error handling here
+        else{
+            cerr << "Nothing to pop. Array is empty" << endl;
+            return 0;
+        }
     }
     void insert(T item, size_t pos){
         if (used + 1 >= _size){
@@ -155,7 +165,10 @@ struct Array
                 delete_at(start->pos - counter);
                 counter++;
             }
+            cur = start;
             start = start->next;
+            if (cur != NULL)
+                free(cur);
         }
     }
 };

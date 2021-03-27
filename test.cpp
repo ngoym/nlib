@@ -47,6 +47,9 @@ void test_array(){
     arr.pop();
     arr.print();
     cout << "Size of array : " << arr.used << endl;
+
+    Array<float> farr;
+    farr.at(10);
 }
 
 int main(){
