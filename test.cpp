@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include "Array.h"
+#include "List.h"
 
 using namespace std;
 
@@ -52,8 +53,53 @@ void test_array(){
     farr.at(10);
 }
 
+void test_list(){
+    List<int> list;
+    cout << "List size : " << list.size() << endl;
+    list.push_back(1);
+    list.push_back(2);
+    list.push_back(3);
+    list.push_back(4);
+    list.push_front(0);
+    list.push_back(5);
+    cout << "Value at index 3 : " << list.at(3) << endl;
+    list.print();
+    list.pop_front();
+    list.pop_front();
+    cout << "Poped front " << endl;
+    list.print();
+    list.pop_back();
+    cout << "Poped back " << endl;
+    list.print();
+    list.reverse();
+    cout << "Reversed list" << endl;
+    list.print('r');
+    cout << "Front value : " << list.front() << endl;
+    cout << "Back value : " << list.back() << endl;
+    list.reverse();
+    list.print();
+    cout << "Back value after reversing : " << list.back() << endl;
+    list.erase(6);
+    list.erase(2);
+    cout << "erased index 2" << endl;
+    list.print();
+    list.erase(2);
+    cout << "erased index 2" << endl;
+    list.print();
+    list.erase(1);
+    cout << "erased index 2" << endl;
+    list.print();
+    cout << "List is empty : " << list.is_empty() << endl;
+    list.insert(0,1);
+    list.print();
+    list.remove_value(1);
+    cout << "List is empty : " << list.is_empty() << endl;
+    list.print();
+}
+
 int main(){
-    test_array();
+    //test_array();
+    test_list();
     system("pause");
     return 0;
 }
